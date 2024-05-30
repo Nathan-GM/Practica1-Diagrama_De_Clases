@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Solitario_Nathan">
+  <ClassDiagramComponents>
+    <Class name="Baraja" package="ies.ngm" visibility="public" xPosition="594.0" yPosition="549.0">
+      <Fields>
+        <Field name="cartas" type="ArrayList&lt;Carta&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Barajar" returnType="void" visibility="public"/>
+        <Method name="Repartir" returnType="void" visibility="public"/>
+        <Method name="Baraja" returnType="ArrayList&lt;Carta&gt;" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Carta" package="ies.ngm" visibility="public" xPosition="82.0" yPosition="495.0">
+      <Fields>
+        <Field name="visible" type="boolean" visibility="private"/>
+        <Field name="palo" type="Palos" visibility="private"/>
+        <Field name="numero" type="Numeracion" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Carta" returnType="void" visibility="public">
+          <Argument type="Palos" name="palo"/>
+          <Argument type="Numeracion" name="numero"/>
+          <Argument type="boolean" name="visible"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Monton" package="ies.ngm" visibility="public" isAbstract="true" xPosition="904.0" yPosition="42.0">
+      <Fields>
+        <Field name="cartas" type="ArrayList&lt;Carta&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="moverCarta" returnType="Carta" visibility="public" isSynchronized="true">
+          <Argument type="Carta" name="c"/>
+        </Method>
+        <Method name="esValido" returnType="boolean" visibility="public" isSynchronized="true">
+          <Argument type="Carta" name="c"/>
+        </Method>
+        <Method name="generarMonton" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Monton_Baraja" package="ies.ngm" visibility="public" xPosition="730.0" yPosition="296.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Monton_Palo" package="ies.ngm" visibility="public" xPosition="976.0" yPosition="296.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Monton_Juego" package="ies.ngm" visibility="public" xPosition="1241.0" yPosition="249.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="destaparCarta" returnType="void" visibility="public"/>
+        <Method name="moverCartas" returnType="ArrayList&lt;Carta&gt;" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartas"/>
+        </Method>
+        <Method name="esValido" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Juego" package="ies.ngm" visibility="public" xPosition="1084.0" yPosition="568.0">
+      <Fields>
+        <Field name="baraja" type="Baraja" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="CrearMontones" returnType="void" visibility="public"/>
+        <Method name="CrearBaraja" returnType="void" visibility="public"/>
+        <Method name="comprobarFinalizado" returnType="boolean" visibility="public"/>
+        <Method name="iniciarJuego" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="Palos" package="ies.ngm" visibility="public" xPosition="9.0" yPosition="71.0">
+      <Literals>
+        <Literal name="Diamantes"/>
+        <Literal name="Treboles"/>
+        <Literal name="Picas"/>
+        <Literal name="Corazones"/>
+      </Literals>
+    </Enum>
+    <Enum name="Numeracion" package="ies.ngm" visibility="public" xPosition="197.0" yPosition="71.0">
+      <Literals>
+        <Literal name="As"/>
+        <Literal name="Dos"/>
+        <Literal name="Tres"/>
+        <Literal name="Cuatro"/>
+        <Literal name="Cinco"/>
+        <Literal name="Seis"/>
+        <Literal name="Siete"/>
+        <Literal name="Ocho"/>
+        <Literal name="Nueve"/>
+        <Literal name="Diez"/>
+        <Literal name="Joker"/>
+        <Literal name="Queen"/>
+        <Literal name="King"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation name="barajarCartas" source="ies.ngm.Baraja" target="ies.ngm.Monton_Juego" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="crearMobnton" source="ies.ngm.Juego" target="ies.ngm.Monton" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ies.ngm.Monton_Juego" target="ies.ngm.Monton"/>
+    <HasRelation name="Palo" source="ies.ngm.Carta" target="ies.ngm.Palos" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="crearBaraja" source="ies.ngm.Juego" target="ies.ngm.Baraja" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Numero" source="ies.ngm.Carta" target="ies.ngm.Numeracion" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ies.ngm.Monton_Baraja" target="ies.ngm.Monton"/>
+    <HasRelation name="Carta" source="ies.ngm.Baraja" target="ies.ngm.Carta" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="ArrayList"/>
+    <IsRelation name="is" source="ies.ngm.Monton_Palo" target="ies.ngm.Monton"/>
+    <HasRelation name="Cartas" source="ies.ngm.Monton" target="ies.ngm.Carta" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
